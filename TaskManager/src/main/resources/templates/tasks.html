@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Tasks</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"/>
+	<script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+		<br>
+		<div>
+			<a th:href="@{/addTask}">
+				<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="background-color: coral; margin-right: 100px; border-radius: 5px; width: 100px; outline: none; border: none;">
+					Add task
+				</button>
+			</a>
+			<a th:href="@{/}">
+				<button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" style="border-radius: 5px; width: 100px; outline: none; border: none;">
+					Home
+				</button>
+			</a>
+		</div>
+		<br>
+		<table class="table" style="width: 100%; text-align: center;">
+			<thead class="thead-dark">
+	    		<tr>
+	            	<th>Task</th>
+	            	<th>Date</th>
+	            	<th>Actions</th>
+	       		</tr>
+	  		</thead>
+	  		<tbody>
+				<tr th:each="taskNew : ${listTasks}">
+					<td th:text="${{taskNew.taskName}}"></td>
+				    <td th:text="${{taskNew.taskDate}}"></td>
+				    <td>
+						<a th:href="@{/deleteTask/{ID}(ID=${{taskNew.ID}})}">
+							<button type="button" class="btn btn-primary" style="background-color: red;">Delete</button>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
